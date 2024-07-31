@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Examen1P_Chico.Comunes;
+using Examen1P_Chico.Model;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,34 +12,37 @@ namespace Examen1P_Chico.Controllers
     {
         // GET: api/<FutbolistaController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<Futbolista> Get()
         {
-            return new string[] { "value1", "value2" };
+            return ConexionBD.GetFutbolistas();
         }
 
         // GET api/<FutbolistaController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{cedula}")]
+        public Futbolista Get(string cedula)
         {
-            return "value";
+            return ConexionBD.GetFutbolista(cedula);
         }
 
         // POST api/<FutbolistaController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Futbolista objJugador)
         {
+            ConexionBD.PostFutbolista(objJugador);
         }
 
         // PUT api/<FutbolistaController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{cedula}")]
+        public void Put(string cedula, [FromBody] Futbolista objJugador)
         {
+            ConexionBD.PutFutbolista(cedula, objJugador);
         }
 
         // DELETE api/<FutbolistaController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{cedula}")]
+        public void Delete(string cedula)
         {
+            ConexionBD.DeleteFutbolista(cedula);
         }
     }
 }

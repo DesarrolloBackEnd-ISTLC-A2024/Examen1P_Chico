@@ -2,6 +2,7 @@
 {
     public class Equipos
     {
+        public int id_equipo { get; set; }
         public string nombre_equipo { get; set; }
         public string descripcion { get; set; }
         public string numero_jugadores { get; set; }
